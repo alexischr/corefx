@@ -43,18 +43,19 @@ phases:
       name: Windows
       queue:
         name: dotnet-external-temp
-      - template: /eng/common/templates/steps/run-on-windows.yml
-        parameters:
-          agentOs: $(Agent.OS)
-          steps:
-            - script: echo I'm on windows
-              displayName: Windows Script
-      - template: /eng/common/templates/steps/run-on-unix.yml
-        parameters:
-          agentOs: $(Agent.OS)
-          steps:
-            - script: echo $(_os)
-              displayName: Linux
+      steps:
+        - template: /eng/common/templates/steps/run-on-windows.yml
+          parameters:
+            agentOs: $(Agent.OS)
+            steps:
+              - script: echo I'm on windows
+                displayName: Windows Script
+        - template: /eng/common/templates/steps/run-on-unix.yml
+          parameters:
+            agentOs: $(Agent.OS)
+            steps:
+              - script: echo $(_os)
+                displayName: Linux
       # - script: build.cmd -ci $(_commonProps)
       #   displayName: Build Sources and Tests
       # - powershell: eng\common\msbuild.ps1
