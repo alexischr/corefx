@@ -46,13 +46,13 @@ phases:
       steps:
         - template: /eng/common/templates/steps/run-on-windows.yml
           parameters:
-            agentOs: $(Agent.OS)
+            agentOs: Windows_NT
             steps:
               - script: echo I'm on windows
                 displayName: Windows Script
         - template: /eng/common/templates/steps/run-on-unix.yml
           parameters:
-            agentOs: $(Agent.OS)
+            agentOs: Windows_NT
             steps:
               - script: echo ${{ parameters.agentOs }}
                 displayName: Linux
