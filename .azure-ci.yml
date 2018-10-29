@@ -8,7 +8,7 @@ resources:
 
 variables:
   _commonProps: -includetests /p:ArchGroup=x64 /p:ConfigurationGroup=Debug /p:SkipTests=true /p:ArchiveTests=true
-  _os: Windows
+  myVariable: Windows
 
 phases:
   # - template: /eng/common/templates/phases/base.yml
@@ -44,11 +44,11 @@ phases:
       queue:
         name: dotnet-external-temp
       steps:
-        - ${{ if eq(variables._os, Windows) }}:
+        - ${{ if eq(variables.myVariable, 'Windows') }}:
           - script: echo I'm on windows
             displayName: Windows Script
 
-        - ${{ if ne(variables._os, Windows) }}:
+        - ${{ if ne(variables._os, 'Windows') }}:
           - script: echo $(_os)
             displayName: Linux
       # - script: build.cmd -ci $(_commonProps)
