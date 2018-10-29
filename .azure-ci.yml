@@ -54,7 +54,7 @@ phases:
           parameters:
             agentOs: $(Agent.OS)
             steps:
-              - script: echo $(_os)
+              - script: echo ${{ parameters.agentOs }}
                 displayName: Linux
       # - script: build.cmd -ci $(_commonProps)
       #   displayName: Build Sources and Tests
