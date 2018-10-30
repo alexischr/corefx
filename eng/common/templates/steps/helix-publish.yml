@@ -19,7 +19,7 @@ parameters:
   continueOnError: false
 
 steps:
-- template: /eng/common/steps/run-on-unix.yml
+- template: /eng/common/templates/steps/run-on-unix.yml
   parameters:
     agentOs: $(Agent.OS)
     steps:
@@ -46,7 +46,7 @@ steps:
         WaitForWorkItemCompletion: ${{ parameters.WaitForWorkItemCompletion }}
         WorkItemArchiveWildCard: ${{ parameters.WorkItemArchiveWildCard }}
 
-- template: /eng/common/steps/run-on-windows.yml
+- template: /eng/common/templates/steps/run-on-windows.yml
   parameters:
     agentOs: $(Agent.OS)
     steps:
