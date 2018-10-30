@@ -11,13 +11,15 @@ variables:
   myVariable: Windows
 
 phases:
-  # - template: /eng/common/templates/phases/base.yml
-  #   parameters:
-  #     name: Linux
-  #     queue:
-  #       container: LinuxContainer
-  #       name: Hosted Ubuntu 1604
-  #     steps:
+  - template: /eng/common/templates/phases/base.yml
+    parameters:
+      name: Linux
+      queue:
+        container: LinuxContainer
+        name: Hosted Ubuntu 1604
+      steps:
+        - powershell: $(Build.SourcesDirectory)\.dotnet\dotnet msbuild
+                eng/common/helixpublish.proj /t:test
   #     - script: ./build.sh --ci $(_commonProps)
   #       displayName: Build Sources and Tests
   #     - script: ./eng/common/msbuild.sh
@@ -44,18 +46,8 @@ phases:
       queue:
         name: dotnet-external-temp
       steps:
-        - template: /eng/common/templates/steps/run-on-windows.yml
-          parameters:
-            agentOs: Windows_NT
-            steps:
-              - script: echo I'm on windows
-                displayName: Windows Script
-        - template: /eng/common/templates/steps/run-on-unix.yml
-          parameters:
-            agentOs: Windows_NT
-            steps:
-              - script: echo ${{ parameters.agentOs }}
-                displayName: Linux
+        - powershell: $(Build.SourcesDirectory)\.dotnet\dotnet msbuild
+                  eng/common/helixpublish.proj /t:test
       # - script: build.cmd -ci $(_commonProps)
       #   displayName: Build Sources and Tests
       # - powershell: eng\common\msbuild.ps1
