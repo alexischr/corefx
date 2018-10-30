@@ -18,7 +18,7 @@ phases:
         container: LinuxContainer
         name: Hosted Ubuntu 1604
       steps:
-        - powershell: $(Build.SourcesDirectory)\.dotnet\dotnet msbuild
+        - script: $(Build.SourcesDirectory)\.dotnet\dotnet msbuild
                 eng/common/helixpublish.proj /t:test
   #     - script: ./build.sh --ci $(_commonProps)
   #       displayName: Build Sources and Tests
@@ -46,7 +46,7 @@ phases:
       queue:
         name: dotnet-external-temp
       steps:
-        - powershell: $(Build.SourcesDirectory)\.dotnet\dotnet msbuild
+        - script: $(Build.SourcesDirectory)\.dotnet\dotnet msbuild
                   eng/common/helixpublish.proj /t:test
       # - script: build.cmd -ci $(_commonProps)
       #   displayName: Build Sources and Tests
