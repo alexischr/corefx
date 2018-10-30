@@ -46,8 +46,15 @@ phases:
       queue:
         name: dotnet-external-temp
       steps:
-        - script: $(Build.SourcesDirectory)\.dotnet\dotnet msbuild
-                  eng/common/helixpublish.proj /t:test
+        - ${{ if contains($(Build.SourcesDirectory), '\') }}:
+          - powershell:
+              filePath: eng/common/msbuild.ps1
+              arguments: eng/common/helixpublish.proj /t:test
+            displayName: Windows
+        - ${{ if not(contains($(Build.SourcesDirectory), '\')) }}:
+          - script: eng/common/msbuild.sh
+                    eng/common/helixpublish.proj /t:test
+            displayName: Linux
       # - script: build.cmd -ci $(_commonProps)
       #   displayName: Build Sources and Tests
       # - powershell: eng\common\msbuild.ps1
