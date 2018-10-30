@@ -23,7 +23,7 @@ steps:
     parameters:
       agentOs: $(Agent.OS)
       steps:
-        - script: ./eng/common/msbuild.sh
+        script: ./eng/common/msbuild.sh
                   eng/common/helixpublish.proj /t:test
         displayName: Send job to Helix Linux
         condition: ${{ parameters.condition }}
@@ -49,24 +49,24 @@ steps:
       parameters:
         agentOs: $(Agent.OS)
         steps:
-          - powershell: & \"$(Build.SourcesDirectory)\eng\common\msbuild.ps1\" eng/common/helixpublish.proj /t:test
-            displayName: Send job to Helix Windows
-            condition: ${{ parameters.condition }}
-            continueOnError: ${{ parameters.continueOnError }}
-            env:
-              HelixSource: ${{ parameters.HelixSource }}
-              HelixType: ${{ parameters.HelixType }}
-              HelixBuild: ${{ parameters.HelixBuild }}
-              HelixTargetQueues: ${{ parameters.HelixTargetQueues }}
-              HelixAccessToken: ${{ parameters.HelixAccessToken }}
-              HelixPreCommands: ${{ parameters.HelixPreCommands }}
-              HelixPostCommands: ${{ parameters.HelixPostCommands }}
-              HelixCorrelationPayload: ${{ parameters.HelixCorrelationPayload }}
-              WorkItemDirectory: ${{ parameters.WorkItemDirectory }}
-              WorkItemCommand: ${{ parameters.WorkItemCommand }}
-              IncludeDotNetCli: ${{ parameters.IncludeDotNetCli }}
-              DotNetCliPackageType: ${{ parameters.DotNetCliPackageType }}
-              DotNetCliVersion: ${{ parameters.DotNetCliVersion }}
-              EnableXUnitReporter: ${{ parameters.EnableXUnitReporter }}
-              WaitForWorkItemCompletion: ${{ parameters.WaitForWorkItemCompletion }}
-              WorkItemArchiveWildCard: ${{ parameters.WorkItemArchiveWildCard }}
+          powershell: & \"$(Build.SourcesDirectory)\eng\common\msbuild.ps1\" eng/common/helixpublish.proj /t:test
+          displayName: Send job to Helix Windows
+          condition: ${{ parameters.condition }}
+          continueOnError: ${{ parameters.continueOnError }}
+          env:
+            HelixSource: ${{ parameters.HelixSource }}
+            HelixType: ${{ parameters.HelixType }}
+            HelixBuild: ${{ parameters.HelixBuild }}
+            HelixTargetQueues: ${{ parameters.HelixTargetQueues }}
+            HelixAccessToken: ${{ parameters.HelixAccessToken }}
+            HelixPreCommands: ${{ parameters.HelixPreCommands }}
+            HelixPostCommands: ${{ parameters.HelixPostCommands }}
+            HelixCorrelationPayload: ${{ parameters.HelixCorrelationPayload }}
+            WorkItemDirectory: ${{ parameters.WorkItemDirectory }}
+            WorkItemCommand: ${{ parameters.WorkItemCommand }}
+            IncludeDotNetCli: ${{ parameters.IncludeDotNetCli }}
+            DotNetCliPackageType: ${{ parameters.DotNetCliPackageType }}
+            DotNetCliVersion: ${{ parameters.DotNetCliVersion }}
+            EnableXUnitReporter: ${{ parameters.EnableXUnitReporter }}
+            WaitForWorkItemCompletion: ${{ parameters.WaitForWorkItemCompletion }}
+            WorkItemArchiveWildCard: ${{ parameters.WorkItemArchiveWildCard }}
