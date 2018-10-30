@@ -18,6 +18,7 @@ parameters:
   condition: succeeded()
   continueOnError: false
 
+steps:
   - template: /eng/common/steps/run-on-unix.yml
     parameters:
       agentOs: $(Agent.OS)
