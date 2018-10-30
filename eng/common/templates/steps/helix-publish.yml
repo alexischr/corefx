@@ -50,7 +50,7 @@ steps:
   parameters:
     agentOs: $(Agent.OS)
     steps:
-      powershell: & \"$(Build.SourcesDirectory)\eng\common\msbuild.ps1\" eng/common/helixpublish.proj /t:test
+      powershell: '& \"$(Build.SourcesDirectory)\eng\common\msbuild.ps1\" eng/common/helixpublish.proj /t:test'
       displayName: Send job to Helix Windows
       condition: ${{ parameters.condition }}
       continueOnError: ${{ parameters.continueOnError }}
